@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('用户列表')" />
+	<th:block th:include="include :: layout-latest-css" />
+	<th:block th:include="include :: ztree-css" />
+</head>
+<body class="gray-bg">
+
+		<div class="container-div">
+			<div class="row">
+				<!--<div class="col-sm-12 search-collapse">
+					<form id="user-form">
+						<input type="hidden" id="deptId" name="deptId">
+		                <input type="hidden" id="parentId" name="parentId">
+						<div class="select-list">
+
+						</div>
+					</form>
+				</div>-->
+				
+		        <div class="btn-group-sm" id="toolbar" role="group">
+		        	<a class="btn btn-success" onclick="$.operate.openAdd(800,400)"  hasPermission="system:user:edit">
+		                <i class="fa fa-plus"></i> 新增
+		            </a>
+		             <!--<a class="btn btn-primary single disabled" onclick="$.operate.editTab()" d="system:user:edit">
+			            <i class="fa fa-edit"></i> 修改
+			        </a>
+		            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" d="system:user:remove">
+		                <i class="fa fa-remove"></i> 删除
+		            </a>-->
+		            <!--<a class="btn btn-info" onclick="$.table.importExcel()" d="system:user:import">
+			            <i class="fa fa-upload"></i> 导入
+			        </a>
+		            <a class="btn btn-warning" onclick="$.table.exportExcel()" d="system:user:export">
+			            <i class="fa fa-download"></i> 导出
+			        </a>-->
+		        </div>
+		        
+		        <div class="col-sm-12 select-table table-striped " style="height:98%;">
+				    <table id="bootstrap-table"></table>
+				</div>
+			</div>
+		</div>
+
+
+	<th:block th:include="include :: footer" />
+	<script th:src="@{/js/system/user.js}"></script>
+</body>
+</html>
