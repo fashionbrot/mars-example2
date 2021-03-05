@@ -46,8 +46,10 @@ public class Interceptor implements HandlerInterceptor {
             if (!handlerMethod.hasMethodAnnotation(ResponseBody.class)){
                 response.sendRedirect(url(request)+"/login");
             }else{
-                throw new MarsException(RespCode.SIGNATURE_MISMATCH);
+                response.setHeader("login","true");
+                return false;
             }
+            return true;
         }
         if (!menuService.checkPermissionUrl(handler,request,model)){
             HandlerMethod handlerMethod = (HandlerMethod) handler;

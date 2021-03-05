@@ -473,19 +473,31 @@ function loadJs(file, headElem) {
     if (headElem) headElem.appendChild(script);
     else document.getElementsByTagName('head')[0].appendChild(script);
 }
-
+function getTopWinow(){
+    var p = window;
+    while(p != p.parent){
+        p = p.parent;
+    }
+    return p;
+}
 /** 设置全局ajax处理 */
 $.ajaxSetup({
     complete: function(XMLHttpRequest, textStatus) {
-        if (textStatus == 'timeout') {
-            $.modal.alertWarning("服务器超时，请稍后再试！");
-            $.modal.enable();
-            $.modal.closeLoading();
-        } else if (textStatus == "parsererror" || textStatus == "error") {
-            $.modal.alertWarning("服务器错误，请联系管理员！");
-            $.modal.enable();
-            $.modal.closeLoading();
+        if (XMLHttpRequest.getResponseHeader('login')=='true'){
+            var top = getTopWinow();
+            top.location.href = ctx+'login';
+        }else{
+            if (textStatus == 'timeout') {
+                $.modal.alertWarning("服务器超时，请稍后再试！");
+                $.modal.enable();
+                $.modal.closeLoading();
+            } else if (textStatus == "parsererror" || textStatus == "error") {
+                $.modal.alertWarning("服务器错误，请联系管理员！");
+                $.modal.enable();
+                $.modal.closeLoading();
+            }
         }
+
     }
 });
 
