@@ -21,11 +21,11 @@ public class ErrController implements ErrorController {
     public String handleError(HttpServletRequest request){
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
         if(statusCode == 500){
-            return "/error/500";
+            return "error/500";
         }else if(statusCode == 404){
-            return "/error/404";
+            return "error/404";
         }else{
-            return "/500";
+            return "error/500";
         }
 
     }

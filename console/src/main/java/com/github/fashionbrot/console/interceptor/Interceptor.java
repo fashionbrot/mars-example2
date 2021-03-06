@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.fashionbrot.common.enums.RespCode;
 import com.github.fashionbrot.common.exception.MarsException;
 import com.github.fashionbrot.common.model.LoginModel;
+import com.github.fashionbrot.common.util.CookieUtil;
 import com.github.fashionbrot.common.vo.RespVo;
 import com.github.fashionbrot.core.service.MenuService;
 import com.github.fashionbrot.core.service.UserLoginService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,6 +67,11 @@ public class Interceptor implements HandlerInterceptor {
         }else{
             return true;
         }
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        CookieUtil.rewriteCookie(request,response,false);
     }
 
     public String url(HttpServletRequest request){
